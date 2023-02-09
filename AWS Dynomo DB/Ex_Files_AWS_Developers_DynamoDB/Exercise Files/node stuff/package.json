@@ -1,0 +1,14 @@
+{
+  "name": "dynamodb_example",
+  "version": "1.0.0",
+  "description": "working with dynamoDB",
+  "main": "index.js",
+  "scripts": {
+    "test": "jasmine"
+  },
+  "author": "pranjal779@gmail.com",
+  "license": "MIT",
+  "dependencies": {
+    "aws-sdk": "^2.1310.0"
+  }
+}

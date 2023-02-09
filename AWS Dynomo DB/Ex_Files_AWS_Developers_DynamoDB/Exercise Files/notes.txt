@@ -1,0 +1,6 @@
+Fat array
+
+***
+AWS for Developers: DynamoDB
+Insert data with transactions in DynamoDB using Node.js
+***

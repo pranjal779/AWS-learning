@@ -1,0 +1,54 @@
+{
+    "Records": [
+        {
+            "eventID": "6cb032ff08e624c9f2a963501ca6fdd5",
+            "eventName": "MODIFY",
+            "eventVersion": "1.1",
+            "eventSource": "aws:dynamodb",
+            "awsRegion": "us-east-2",
+            "dynamodb": {
+                "ApproximateCreationDateTime": "2019-05-29T15:05:33.000Z",
+                "Keys": {
+                    "SK": {
+                        "S": "27"
+                    },
+                    "TeamID": {
+                        "S": "PLAYERINFO_LAA"
+                    }
+                },
+                "NewImage": {
+                    "PlayerName": {
+                        "S": "Mike MVP Trout"
+                    },
+                    "Position": {
+                        "S": "CF"
+                    },
+                    "SK": {
+                        "S": "27"
+                    },
+                    "TeamID": {
+                        "S": "PLAYERINFO_LAA"
+                    }
+                },
+                "OldImage": {
+                    "PlayerName": {
+                        "S": "Mike Trout"
+                    },
+                    "Position": {
+                        "S": "CF"
+                    },
+                    "SK": {
+                        "S": "27"
+                    },
+                    "TeamID": {
+                        "S": "PLAYERINFO_LAA"
+                    }
+                },
+                "SequenceNumber": "66841900000000000789668385",
+                "SizeBytes": 136,
+                "StreamViewType": "NEW_AND_OLD_IMAGES"
+            }
+        }
+    ],
+    "NextShardIterator": "arn:aws:dynamodb:us-east-2:895400811189:table/BaseballStats/stream/2019-05-29T14:44:37.846|1|AAAAAAAAAAG0ijXcS3KYO2YxpDHCMkxd4+2XDo4zF+HK/T6DiZdiyLG0EQPLkU8xrxtR1697SYZAeCeIIdyRTbz75jKnXdPTj03dprk+F9+4/YvOsB7hID6Ch3KMzyAeHKBuxT6imKgGTu3MFFx0Lwy3sVtEebF2Wh0hFRRAZU+Rc3PuMI19E089taqtgP+GMmT9AYD7ULHQlFsCGn1h6tR0Vii8T7dE02DQlmvJGwjr2iXYKarojIeVbe/ny5juLSG7qHTJ/IPn3AGJkxFXayirO3vtt6UG7T6eng6wWjZYE2WpPLUxPuu8UJZPRy6Nsu8rR8VkCL+kWiGouNGHxGUwueuuF912P4jIHlVvW8IdZDTqyLRnft9rVHWblYvix5h05YRP+F8MIhu/uKtfimbM8MIVlb5iJAWeRWWBv+YxIGT9dSpdf8zmBGZ0ebKd5Gtjz7jdVj4eMttT/u8dYkHdQu5/tY501WDni6y6IEifwt6lFp/eFkAh2m1ydDTpHvLMuhWYFtxXjd0kw+5qZSbIco9yTRBy4IJMIoKujuVzfAVd8Ji5C2AhR9plQXUzFlnnKw18vyQOKthxOMG6RFqXSxqJyeBMraBlvzC0BTpOiQtK/zFYrA=="
+}

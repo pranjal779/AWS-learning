@@ -1,0 +1,114 @@
+[
+    {
+        "TeamID": {
+            "S": "PLAYERINFO_LAA"
+        },
+        "SK": {
+            "S": "27"
+        },
+        "PlayerName": {
+            "S": "Mike Trout"
+        },
+        "Position": {
+            "S": "CF"
+        }
+    },
+    {
+        "TeamID": {
+            "S": "PLAYERINFO_LAA"
+        },
+        "SK": {
+            "S": "17"
+        },
+        "PlayerName": {
+            "S": "Shohei Ohtani"
+        },
+        "Position": {
+            "S": "SP"
+        }
+    },
+    {
+        "TeamID": {
+            "S": "PLAYERINFO_LAA"
+        },
+        "SK": {
+            "S": "5"
+        },
+        "PlayerName": {
+            "S": "Albert Pujols"
+        },
+        "Position": {
+            "S": "1B"
+        }
+    },
+    {
+        "TeamID": {
+            "S": "PLAYERINFO_LAA"
+        },
+        "SK": {
+            "S": "56"
+        },
+        "PlayerName": {
+            "S": "Kole Calhoun"
+        },
+        "Position": {
+            "S": "RF"
+        }
+    },
+    {
+        "TeamID": {
+            "S": "PLAYERINFO_NYY"
+        },
+        "SK": {
+            "S": "99"
+        },
+        "PlayerName": {
+            "S": "Aaron Judge"
+        },
+        "Position": {
+            "S": "RF"
+        }
+    },
+    {
+        "TeamID": {
+            "S": "PLAYERINFO_SDP"
+        },
+        "SK": {
+            "S": "13"
+        },
+        "PlayerName": {
+            "S": "Manny Machado"
+        },
+        "Position": {
+            "S": "3B"
+        }
+    },
+    {
+        "TeamID": {
+            "S": "PLAYERINFO_OAK"
+        },
+        "SK": {
+            "S": "2"
+        },
+        "PlayerName": {
+            "S": "Khris Davis"
+        },
+        "Position": {
+            "S": "LF"
+        }
+    },
+    {
+        "TeamID": {
+            "S": "PLAYERINFO_SFG"
+        },
+        "SK": {
+            "S": "10"
+        },
+        "PlayerName": {
+            "S": "Evan Longoria"
+        },
+        "Position": {
+            "S": "3B"
+        }
+    }
+]
