@@ -1,0 +1,13 @@
+deleting all the files as I may not use these files again, but rather do the course again in the future.
+
+03_01
+03_03 > node module > .bin
+
+
+<everything inside a node module>
+
+refer to https://flaviocopes.com/should-commit-node-modules-git/
+
+or 
+
+refer to https://stackoverflow.com/q/69578872/7848995

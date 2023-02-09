@@ -1,0 +1,471 @@
+aws dynamodb describe-table --table-name BaseballStats
+
+# in order for this to work you need to remove aws cli v1 from control pannel
+
+
+aws dynamodb batch-write-item --requrest-item --request-items file://./teams.json
+
+correct call
+
+aws dynamodb batch-write-item --request-items file://teams.json
+
+as the path was 
+C:\Users\prath\Desktop\Exercise Files\02_02>
+
+output:
+C:\Users\prath\Desktop\Exercise Files\02_02>aws dynamodb batch-write-item --request-items file://teams.json
+{
+    "UnprocessedItems": {}
+}
+
+refernce:
+https://stackoverflow.com/a/58290520/7848995
+
+
+---
+
+C:\Users\prath\Desktop\Exercise Files\02_02>aws dynamodb batch-write-item --request-items file://players.json
+{
+    "UnprocessedItems": {}
+}
+
+C:\Users\prath\Desktop\Exercise Files\02_02>aws dynamodb batch-write-item --request-items file://games.json
+{
+    "UnprocessedItems": {}
+}
+
+
+# scan
+
+C:\Users\prath\Desktop\Exercise Files\02_02>aws dynamodb scan --return-consumed-capacity "TOTAL" --table-name BaseballStats
+{
+    "Items": [
+        {
+            "SK": {
+                "S": "OAK"
+            },
+            "TeamID": {
+                "S": "TEAMINFO_OAK"
+            },
+            "TeamName": {
+                "S": "Oakland Athletics"
+            }
+        },
+	.
+	.
+	.,
+	.
+	.
+	.,
+	.
+	.
+	.,
+        {
+            "SK": {
+                "S": "SEA"
+            },
+            "TeamID": {
+                "S": "TEAMINFO_SEA"
+            },
+            "TeamName": {
+                "S": "Seattle Mariners"
+            }
+        }
+    ],
+    "Count": 23,
+    "ScannedCount": 23,
+    "ConsumedCapacity": {
+        "TableName": "BaseballStats",
+        "CapacityUnits": 0.5
+    }
+}
+
+
+C:\Users\prath\Desktop\Exercise Files\02_02>
+
+
+----
+
+# consistent-read.
+# this costs 2 times in terms of capacity unit
+
+C:\Users\prath\Desktop\Exercise Files\02_02>aws dynamodb scan --return-consumed-capacity "TOTAL" --consistent-read --table-name BaseballStats
+{
+    "Items": [
+        {
+            "SK": {
+                "S": "OAK"
+            },
+            "TeamID": {
+                "S": "TEAMINFO_OAK"
+            },
+            "TeamName": {
+                "S": "Oakland Athletics"
+            }
+        },
+        {
+            "SK": {
+                "S": "17"
+            },
+            "PlayerName": {
+                "S": "Shohei Ohtani"
+            },
+            "TeamID": {
+                "S": "PLAYERINFO_LAA"
+            },
+            "Position": {
+                "S": "SP"
+            }
+        },
+        {
+            "SK": {
+                "S": "27"
+            },
+            "PlayerName": {
+                "S": "Mike Trout"
+            },
+            "TeamID": {
+                "S": "PLAYERINFO_LAA"
+            },
+            "Position": {
+                "S": "CF"
+            }
+        },
+	.
+	.
+	.,
+	.
+	.
+	.,
+	.
+	.
+	.,
+
+        {
+            "SK": {
+                "S": "SEA"
+            },
+            "TeamID": {
+                "S": "TEAMINFO_SEA"
+            },
+            "TeamName": {
+                "S": "Seattle Mariners"
+            }
+        }
+    ],
+    "Count": 23,
+    "ScannedCount": 23,
+    "ConsumedCapacity": {
+        "TableName": "BaseballStats",
+        "CapacityUnits": 1.0
+    }
+}
+
+
+C:\Users\prath\Desktop\Exercise Files\02_02>
+
+----
+
+# filter
+
+C:\Users\prath\Desktop\Exercise Files\02_02>aws dynamodb scan --return-consumed-capacity "TOTAL" --consistent-read --table-name BaseballStats --filter-expression 'TeamID = :t' --expression-attribute-values '{":t":{"S":"TEAMINFO_SEA"}}'
+
+usage: aws [options] <command> <subcommand> [<subcommand> ...] [parameters]
+To see help text, you can run:
+
+  aws help
+  aws <command> help
+  aws <command> <subcommand> help
+
+Unknown options: :t', =
+
+
+C:\Users\prath\Desktop\Exercise Files\02_02>aws dynamodb scan --return-consumed-capacity "TOTAL" --consistent-read --table-name BaseballStats --filter-expression 'TeamID=:t' --expression-attribute-values '{":t":{"S":"TEAMINFO_SEA"}}'
+
+Error parsing parameter '--expression-attribute-values': Expected: '=', received: ''' for input:
+'{:t:{S:TEAMINFO_SEA}}'
+^
+
+C:\Users\prath\Desktop\Exercise Files\02_02>aws dynamodb scan --return-consumed-capacity "TOTAL" --consistent-read --table-name BaseballStats --filter-expression 'TeamID = :t' --expression-attribute-values '{":t":{"S":"TEAMINFO_SEA"}}'
+
+usage: aws [options] <command> <subcommand> [<subcommand> ...] [parameters]
+To see help text, you can run:
+
+  aws help
+  aws <command> help
+  aws <command> <subcommand> help
+
+Unknown options: :t', =
+
+
+C:\Users\prath\Desktop\Exercise Files\02_02>aws dynamodb scan --return-consumed-capacity "TOTAL" --consistent-read --table-name BaseballStats --filter-expression 'TeamID = :t' --expression-attribute-values '{":t":{"S":"TEAMINFO_SEA"}}'
+
+***
+THERE IS A ERROR I DO NOT KNOW WHAT IS 
+PLEASE LOOK AT THE OUTPUT
+pranjals studies\AWS\AWS Dynomo DB\cmds\issues\1
+***
+
+---
+C:\Users\prath\Desktop\Exercise Files\02_02>aws dynamodb query --table-name BaseballStats --key-condition-expression "TeamID = :t" --expression-attribute-values '{":t":{"S":"GAMES_LAA"}}' --return-consumed-capacity "TOTAL"
+
+Error parsing parameter '--expression-attribute-values': Expected: '=', received: ''' for input:
+'{:t:{S:GAMES_LAA}}'
+^
+
+C:\Users\prath\Desktop\Exercise Files\02_02>
+
+***
+refer:
+\cmds\issues\2
+***
+
+this worked: 
+
+C:\Users\prath\Desktop\Exercise Files\02_02>aws dynamodb query --table-name BaseballStats --key-condition-expression "TeamID = :t" --expression-attribute-values "{\":t\":{\"S\":\"GAMES_LAA\"}}" --return-consumed-capacity "TOTAL"
+{
+    "Items": [
+        {
+            "SK": {
+                "S": "20190415"
+            },
+            "TeamID": {
+                "S": "GAMES_LAA"
+            },
+            "Runs": {
+                "N": "3"
+            },
+            "OpposingTeamID": {
+                "S": "LAD"
+            },
+            "OpposingTeamRuns": {
+                "N": "1"
+            }
+        },
+	.
+	.
+	.,
+	.
+	.
+	.,
+        {
+            "SK": {
+                "S": "20190420"
+            },
+            "TeamID": {
+                "S": "GAMES_LAA"
+            },
+            "Runs": {
+                "N": "11"
+            },
+            "OpposingTeamID": {
+                "S": "SEA"
+            },
+            "OpposingTeamRuns": {
+                "N": "7"
+            }
+        }
+    ],
+    "Count": 6,
+    "ScannedCount": 6,
+    "ConsumedCapacity": {
+        "TableName": "BaseballStats",
+        "CapacityUnits": 0.5
+    }
+}
+
+
+C:\Users\prath\Desktop\Exercise Files\02_02>
+
+***
+reference:
+https://stackoverflow.com/a/51861924/7848995
+***
+
+---
+
+***
+Notice the 1st error,
+***
+C:\Users\prath\Desktop\Exercise Files\02_02>aws dynamodb query --table-name BaseballStats --key-condition-expression "TeamID = :t" --expression-attribute-values "{\":t\":{\"S\":\"GAMES_LAA\"},\":d1\":{\"S\":\"20190401\"},\":d2\":{\"S\":\"20190417\"}}" --return-consumed-capacity "TOTAL"
+
+An error occurred (ValidationException) when calling the Query operation: Value provided in ExpressionAttributeValues unused in expressions: keys: {:d1, :d2}
+
+****
+^^^^
+****
+
+C:\Users\prath\Desktop\Exercise Files\02_02>aws dynamodb query --table-name BaseballStats --key-condition-expression "TeamID = :t AND SK BETWEEN :d1 AND :d2" --expression-attribute-values "{\":t\":{\"S\":\"GAMES_LAA\"},\":d1\":{\"S\":\"20190401\"},\":d2\":{\"S\":\"20190417\"}}" --return-consumed-capacity "TOTAL"
+{
+    "Items": [
+        {
+            "SK": {
+                "S": "20190415"
+            },
+            "TeamID": {
+                "S": "GAMES_LAA"
+            },
+            "Runs": {
+                "N": "3"
+            },
+            "OpposingTeamID": {
+                "S": "LAD"
+            },
+            "OpposingTeamRuns": {
+                "N": "1"
+            }
+        },
+        {
+            "SK": {
+                "S": "20190416"
+            },
+            "TeamID": {
+                "S": "GAMES_LAA"
+            },
+            "Runs": {
+                "N": "4"
+            },
+            "OpposingTeamID": {
+                "S": "OAK"
+            },
+            "OpposingTeamRuns": {
+                "N": "2"
+            }
+        },
+        {
+            "SK": {
+                "S": "20190417"
+            },
+            "TeamID": {
+                "S": "GAMES_LAA"
+            },
+            "Runs": {
+                "N": "8"
+            },
+            "OpposingTeamID": {
+                "S": "SDP"
+            },
+            "OpposingTeamRuns": {
+                "N": "3"
+            }
+        }
+    ],
+    "Count": 3,
+    "ScannedCount": 3,
+    "ConsumedCapacity": {
+        "TableName": "BaseballStats",
+        "CapacityUnits": 0.5
+    }
+}
+
+
+C:\Users\prath\Desktop\Exercise Files\02_02>
+
+---
+
+C:\Users\prath\Desktop\Exercise Files\02_02>aws dynamodb query --table-name BaseballStats --key-condition-expression "TeamID = :t AND SK BETWEEN :d1 AND :d2" --expression-attribute-values "{\":t\":{\"S\":\"GAMES_LAA\"},\":d1\":{\"S\":\"20190401\"},\":d2\":{\"S\":\"20190417\"},\":r\":{\"N\":\"5\"}}" --return-consumed-capacity "TOTAL" --filter-expression "Runs >= :r"
+{
+    "Items": [
+        {
+            "SK": {
+                "S": "20190417"
+            },
+            "TeamID": {
+                "S": "GAMES_LAA"
+            },
+            "Runs": {
+                "N": "8"
+            },
+            "OpposingTeamID": {
+                "S": "SDP"
+            },
+            "OpposingTeamRuns": {
+                "N": "3"
+            }
+        }
+    ],
+    "Count": 1,
+    "ScannedCount": 3,
+    "ConsumedCapacity": {
+        "TableName": "BaseballStats",
+        "CapacityUnits": 0.5
+    }
+}
+
+
+C:\Users\prath\Desktop\Exercise Files\02_02>
+---
+
+refer to C:\Users\prath\Desktop\pranjals studies\AWS\AWS Dynomo DB\Notes\36
+
+---
+
+refer to this:
+https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.DownloadingAndRunning.html
+
+1) Download DynamoDB for free from one of the following locations.
+(files do the tar one)
+2) After you download the archive, extract the contents and copy the extracted directory to a location of your choice.
+
+3) To start DynamoDB on your computer, open a command prompt window, navigate to the directory where you extracted DynamoDBLocal.jar, and enter the following command.
+
+
+java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb
+
+Note
+If you're using Windows PowerShell, be sure to enclose the parameter name or the entire name and value like this:
+
+java -D"java.library.path=./DynamoDBLocal_lib" -jar DynamoDBLocal.jar
+
+DynamoDB processes incoming requests until you stop it. To stop DynamoDB, press Ctrl+C at the command prompt.
+
+DynamoDB uses port 8000 by default. If port 8000 is unavailable, this command throws an exception. For a complete list of DynamoDB runtime options, including -port, enter this command.
+
+java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -help
+
+4) Before you can access DynamoDB programmatically or through the AWS Command Line Interface (AWS CLI), you must configure your credentials to enable authorization for your applications. Downloadable DynamoDB requires any credentials to work, as shown in the following example.
+
+
+AWS Access Key ID: "fakeMyKeyId"
+AWS Secret Access Key: "fakeSecretAccessKey"
+You can use the aws configure command of the AWS CLI to set up credentials. For more information, see Using the AWS CLI.
+
+5) Start writing applications. To access DynamoDB running locally with the AWS CLI, use the --endpoint-url parameter. For example, use the following command to list DynamoDB tables.
+
+
+aws dynamodb list-tables --endpoint-url http://localhost:8000
+
+or 
+C:\Users\prath\Desktop\pranjals studies\AWS\AWS Dynomo DB\Notes
+37, 38, 40, 41
+
+----
+
+InstallingDynamoDB local
+
+C:\Users\prath>aws dynamodb create-table --table-name LocalBaseballStats --attributes-definitions AttributesName=TeamID,AttributeType=S AttributeName=SK,AttributeType=S --Key-schema Attribute=TeamID,KeyType=HASH AttributeName=SK,KeyType=RANGE --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5 --endpoint-url http://localhost:8000
+
+usage: aws [options] <command> <subcommand> [<subcommand> ...] [parameters]
+To see help text, you can run:
+
+  aws help
+  aws <command> help
+  aws <command> <subcommand> help
+
+aws: error: the following arguments are required: --attribute-definitions, --key-schema
+
+
+C:\Users\prath>
+
+***correction made***
+
+C:\Users\prath>aws dynamodb create-table --table-name LocalBaseballStats --attribute-definitions AttributesName=TeamID,AttributeType=S AttributeName=SK,AttributeType=S --key-schema Attribute=TeamID,KeyType=HASH AttributeName=SK,KeyType=RANGE --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5 --endpoint-url http://localhost:8000
+
+Parameter validation failed:
+Missing required parameter in AttributeDefinitions[0]: "AttributeName"
+Unknown parameter in AttributeDefinitions[0]: "AttributesName", must be one of: AttributeName, AttributeType
+Missing required parameter in KeySchema[0]: "AttributeName"
+Unknown parameter in KeySchema[0]: "Attribute", must be one of: AttributeName, KeyType
+
+----
+

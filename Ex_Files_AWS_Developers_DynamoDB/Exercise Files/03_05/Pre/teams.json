@@ -1,0 +1,101 @@
+[
+    {
+        "TeamID": {
+            "S": "TEAMINFO_LAA"
+        },
+        "SK": {
+            "S": "LAA"
+        },
+        "TeamName": {
+            "S": "Los Angeles Angels"
+        }
+    },
+    {
+        "TeamID": {
+            "S": "TEAMINFO_LAD"
+        },
+        "SK": {
+            "S": "LAD"
+        },
+        "TeamName": {
+            "S": "Los Angeles Dodgers"
+        }
+    },
+    {
+        "TeamID": {
+            "S": "TEAMINFO_SDP"
+        },
+        "SK": {
+            "S": "SDP"
+        },
+        "TeamName": {
+            "S": "San Diego Padres"
+        }
+    },
+    {
+        "TeamID": {
+            "S": "TEAMINFO_SFG"
+        },
+        "SK": {
+            "S": "SFG"
+        },
+        "TeamName": {
+            "S": "San Francisco Giants"
+        }
+    },
+    {
+        "TeamID": {
+            "S": "TEAMINFO_ARI"
+        },
+        "SK": {
+            "S": "ARI"
+        },
+        "TeamName": {
+            "S": "Arizona Diamondbacks"
+        }
+    },
+    {
+        "TeamID": {
+            "S": "TEAMINFO_OAK"
+        },
+        "SK": {
+            "S": "OAK"
+        },
+        "TeamName": {
+            "S": "Oakland Athletics"
+        }
+    },
+    {
+        "TeamID": {
+            "S": "TEAMINFO_SEA"
+        },
+        "SK": {
+            "S": "SEA"
+        },
+        "TeamName": {
+            "S": "Seattle Mariners"
+        }
+    },
+    {
+        "TeamID": {
+            "S": "TEAMINFO_NYY"
+        },
+        "SK": {
+            "S": "NYY"
+        },
+        "TeamName": {
+            "S": "New York Yankees"
+        }
+    },
+    {
+        "TeamID": {
+            "S": "TEAMINFO_NYM"
+        },
+        "SK": {
+            "S": "NYM"
+        },
+        "TeamName": {
+            "S": "New York Mets"
+        }
+    }
+]

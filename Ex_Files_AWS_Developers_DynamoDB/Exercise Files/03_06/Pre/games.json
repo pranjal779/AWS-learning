@@ -1,0 +1,104 @@
+[
+    {
+        "TeamID": {
+            "S": "GAMES_LAA"
+        },
+        "SK": {
+            "S": "20190415"
+        },
+        "Runs": {
+            "N": "3"
+        },
+        "OpposingTeamID": {
+            "S": "LAD"
+        },
+        "OpposingTeamRuns": {
+            "N": "1"
+        }
+    },
+    {
+        "TeamID": {
+            "S": "GAMES_LAA"
+        },
+        "SK": {
+            "S": "20190416"
+        },
+        "Runs": {
+            "N": "4"
+        },
+        "OpposingTeamID": {
+            "S": "OAK"
+        },
+        "OpposingTeamRuns": {
+            "N": "2"
+        }
+    },
+    {
+        "TeamID": {
+            "S": "GAMES_LAA"
+        },
+        "SK": {
+            "S": "20190417"
+        },
+        "Runs": {
+            "N": "8"
+        },
+        "OpposingTeamID": {
+            "S": "SDP"
+        },
+        "OpposingTeamRuns": {
+            "N": "3"
+        }
+    },
+    {
+        "TeamID": {
+            "S": "GAMES_LAA"
+        },
+        "SK": {
+            "S": "20190418"
+        },
+        "Runs": {
+            "N": "5"
+        },
+        "OpposingTeamID": {
+            "S": "SFG"
+        },
+        "OpposingTeamRuns": {
+            "N": "1"
+        }
+    },
+    {
+        "TeamID": {
+            "S": "GAMES_LAA"
+        },
+        "SK": {
+            "S": "20190419"
+        },
+        "Runs": {
+            "N": "8"
+        },
+        "OpposingTeamID": {
+            "S": "ARI"
+        },
+        "OpposingTeamRuns": {
+            "N": "4"
+        }
+    },
+    {
+        "TeamID": {
+            "S": "GAMES_LAA"
+        },
+        "SK": {
+            "S": "20190420"
+        },
+        "Runs": {
+            "N": "11"
+        },
+        "OpposingTeamID": {
+            "S": "SEA"
+        },
+        "OpposingTeamRuns": {
+            "N": "7"
+        }
+    }
+]

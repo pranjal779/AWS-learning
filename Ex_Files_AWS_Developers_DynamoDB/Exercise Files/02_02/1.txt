@@ -1,0 +1,19 @@
+aws dynamodb query --table-name BaseballStats \
+--key-condition-experssion "TeamID = :t AND SK BETWEEN :d1 AND :d2" \
+--experssion-attribute-values '{":t":{"S":"GMAES_LAA"},":d1":{"S":"20190401"},":d2":{"S":"20190417"}}' \
+--return-consumed-capacity "TOTAL" \
+--filter-experssion "Runs >= :r"
+
+
+refer:
+C:\Users\prath\Desktop\pranjals studies\AWS\AWS Dynomo DB\Notes\36
+
+---
+AWS for Developers: DynamoDB
+Defining data types in JSON for DynamoDB
+3:30
+
+SS : String set
+BS : Binary set -> store Base64 Encoded content here
+NS : Numerical set
+---
